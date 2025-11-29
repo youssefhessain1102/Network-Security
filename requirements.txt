@@ -5,3 +5,7 @@ matplotlib
 scikit-learn
 xgboost
 flask
+python-dotenv
+certifi
+pymongo
+pymongo[srv]==3.12
