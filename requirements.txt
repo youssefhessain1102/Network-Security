@@ -7,5 +7,6 @@ xgboost
 flask
 python-dotenv
 certifi
+pyaml
 pymongo
 pymongo[srv]==3.12

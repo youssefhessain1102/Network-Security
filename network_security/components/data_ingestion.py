@@ -5,9 +5,9 @@ import pandas as pd
 import pymongo
 from sklearn.model_selection import train_test_split
 from dotenv import load_dotenv
-from network_security.entity.artifacts_entity import DataIngestionArtifact
+from network_security.config.artifacts_entity import DataIngestionArtifact
 from network_security.logging.logger import logging
-from network_security.entity.config_entity import DataIngestionConfig
+from network_security.config.config_entity import DataIngestionConfig
 from network_security.exception.exception import NetworkSecurityException
 
 load_dotenv()
