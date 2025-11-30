@@ -4,7 +4,7 @@ PIPELINE_NAME: str = "NetworkSecurity"
 ARTIFACTS_DIR: str = "Artifacts"
 DATA_SET_FILE: str = "network_data.csv"
 TRAINING_FILE: str = 'train.csv'
-TESTING_FILE: str = 'train.csv'
+TESTING_FILE: str = 'test.csv'
 FILE_NAME: str = 'phisingData.csv'
 
 # Data Ingestion Constants
