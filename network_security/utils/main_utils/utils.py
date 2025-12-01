@@ -1,5 +1,6 @@
 import os
 import sys
+import numpy as np
 import yaml
 import pickle
 
@@ -23,6 +24,28 @@ def write_yaml_file(file_path: str, content: object, replace: bool = False):
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, "w") as file:
             yaml.dump(content, file)
+
+    except Exception as e:
+        raise NetworkSecurityException(e, sys)
+
+
+def save_numpy_array_data(file_path: str, array: np.array):
+    try:
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+
+        with open(file_path, "wb") as file:
+            np.save(file, array)
+
+    except Exception as e:
+        raise NetworkSecurityException(e, sys)
+
+
+def save_object(file_path: str, object: object) -> None:
+    try:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, "wb") as file:
+            pickle.dump(object, file)
 
     except Exception as e:
         raise NetworkSecurityException(e, sys)
