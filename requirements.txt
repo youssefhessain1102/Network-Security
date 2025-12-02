@@ -8,5 +8,6 @@ flask
 python-dotenv
 certifi
 pyaml
+mlflow
 pymongo
 pymongo[srv]==3.12

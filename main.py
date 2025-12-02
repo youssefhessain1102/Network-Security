@@ -47,7 +47,6 @@ if __name__ == "__main__":
         )
         logging.info("Transformation Initiation completed")
 
-
         # Model Trainer
         model_trainer_config = ModelTrainerConfig(trainig_pipeline_config)
         model_trainer = ModelTrainer(
@@ -55,12 +54,9 @@ if __name__ == "__main__":
         )
         logging.info("Initiate Model Trainer")
 
-        model_trainer_artifacts = (
-            model_trainer.initiate_model_trainer()
-        )
+        model_trainer_artifacts = model_trainer.initiate_model_trainer()
         logging.info("Trainig Initiation completed")
         print(model_trainer_artifacts)
-
 
     except Exception as e:
         raise NetworkSecurityException(e, sys)

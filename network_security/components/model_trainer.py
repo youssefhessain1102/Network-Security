@@ -1,5 +1,7 @@
 import os
 import sys
+
+import mlflow
 from network_security.config.artifacts_entity import (
     DataTransformationArtifact,
     ModelTrainerArtifact,
@@ -39,6 +41,17 @@ class ModelTrainer:
 
         except Exception as e:
             raise NetworkSecurityException(e, sys)
+
+    def track_mlflow(self, best_model, classification_metric):
+        with mlflow.start_run():
+            f1_score = classification_metric.f1_score
+            precision = classification_metric.precision
+            recall = classification_metric.recall
+
+            mlflow.log_metric("f1_score", f1_score)
+            mlflow.log_metric("precision", precision)
+            mlflow.log_metric("recall", recall)
+            mlflow.sklearn.log_model(best_model, "model")
 
     def train_model(self, X_train, y_train, X_test, y_test):
         models = {
@@ -89,6 +102,10 @@ class ModelTrainer:
 
         trained_model = get_classification_score(y_train, y_train_pred)
         testing_model = get_classification_score(y_test, y_test_pred)
+
+        # Track MLFlow
+
+        self.track_mlflow(best_model, trained_model)
 
         preprocessor = load_object(
             self.data_transformation_artifacts.transformed_object_file_path
