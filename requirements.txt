@@ -10,4 +10,7 @@ certifi
 pyaml
 mlflow
 pymongo
+dagshub
+uvicorn
+fastapi
 pymongo[srv]==3.12

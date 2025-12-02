@@ -5,10 +5,7 @@ from sklearn.metrics import f1_score
 from sklearn.model_selection import GridSearchCV
 import yaml
 import pickle
-import pandas
-
 from network_security.exception.exception import NetworkSecurityException
-
 
 def read_yaml_file(file_path: str) -> dict:
     try:

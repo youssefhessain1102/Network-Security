@@ -1,6 +1,7 @@
 import os
 import sys
 
+import dagshub
 import mlflow
 from network_security.config.artifacts_entity import (
     DataTransformationArtifact,
@@ -25,7 +26,6 @@ from sklearn.ensemble import (
 from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 from sklearn.neighbors import KNeighborsClassifier
-
 
 class ModelTrainer:
     def __init__(
@@ -52,6 +52,7 @@ class ModelTrainer:
             mlflow.log_metric("precision", precision)
             mlflow.log_metric("recall", recall)
             mlflow.sklearn.log_model(best_model, "model")
+            
 
     def train_model(self, X_train, y_train, X_test, y_test):
         models = {
@@ -122,6 +123,8 @@ class ModelTrainer:
             file_path=self.model_trainer_config.trained_model_file_path,
             object=network_model,
         )
+
+        save_object('final_model/model.pkl', best_model)
 
         model_trainer_artifact = ModelTrainerArtifact(
             self.model_trainer_config.trained_model_file_path,
